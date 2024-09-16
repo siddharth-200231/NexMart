@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaBox, FaInfoCircle, FaUserPlus, FaHome } from 'react-icons/fa';
-
+import { FaBars, FaTimes, FaHome, FaInfoCircle, FaBox } from 'react-icons/fa'; // Imported necessary icons
 import About from './About';
 import Signup from './Signup';
 import Home from './Home';
@@ -61,13 +60,13 @@ function App() {
       <aside className={`fixed inset-y-0 left-0 bg-white shadow-lg transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform md:hidden w-64 z-40`}>
         <div className="flex flex-col p-4 space-y-4">
           <Link to="/" className={`text-gray-700 hover:text-purple-600 transition-colors ${location.pathname === '/' && 'text-purple-600'}`} onClick={toggleSidebar}>
-            Home
+            <FaHome className="inline mr-2" /> Home
           </Link>
           <Link to="/products" className={`text-gray-700 hover:text-purple-600 transition-colors ${location.pathname === '/products' && 'text-purple-600'}`} onClick={toggleSidebar}>
-            Products
+            <FaBox className="inline mr-2" /> Products
           </Link>
           <Link to="/about" className={`text-gray-700 hover:text-purple-600 transition-colors ${location.pathname === '/about' && 'text-purple-600'}`} onClick={toggleSidebar}>
-            About
+            <FaInfoCircle className="inline mr-2" /> About
           </Link>
         </div>
       </aside>
@@ -76,7 +75,7 @@ function App() {
       <main className="flex-1 container mx-auto mt-20 p-4 md:pl-20">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Cards products={filteredProducts} />} />
+          <Route path="/products" element={<Cards categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} products={filteredProducts} />} />
           <Route path="/about" element={<About />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
@@ -100,15 +99,6 @@ function App() {
               <li><Link to="/about" className="hover:text-purple-600">About</Link></li>
               <li><Link to="/signup" className="hover:text-purple-600">Sign Up</Link></li>
             </ul>
-          </div>
-          <div>
-            <h2 className="text-xl font-bold mb-4">Follow Us</h2>
-            <div className="flex space-x-4">
-              <Link to="#" className="hover:text-purple-600"><FaFacebookF /></Link>
-              <Link to="#" className="hover:text-purple-600"><FaTwitter /></Link>
-              <Link to="#" className="hover:text-purple-600"><FaInstagram /></Link>
-              <Link to="#" className="hover:text-purple-600"><FaLinkedin /></Link>
-            </div>
           </div>
         </div>
         <div className="text-center text-gray-500 mt-8">
